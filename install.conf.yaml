@@ -1,10 +1,21 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
 - clean: ['~']
 
 - link:
     ~/.dotfiles: ''
-    ~/.zshrc: zshrc
-    ~/.oh-my-zsh: oh-my-zsh/
-    ~/.zsh_custom: zsh_custom/
+    ~/.zshrc: zsh/zshrc
+    ~/.oh-my-zsh: zsh/oh-my-zsh/
+    ~/.zsh_custom: zsh/zsh_custom/
+    ~/.config/nvim/dein.vim: nvim/dein.vim/
+    ~/.config/nvim/init.vim: nvim/init.vim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - 
+    command: ./fzf/./install --all --completion --update-rc --key-bindings 
+    description: installing fzf
+
