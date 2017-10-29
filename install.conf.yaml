@@ -7,11 +7,21 @@
 
 - link:
     ~/.dotfiles: ''
-    ~/.zshrc: zsh/zshrc
-    ~/.oh-my-zsh: zsh/oh-my-zsh/
-    ~/.zsh_custom: zsh/zsh_custom/
-    ~/.config/nvim/dein.vim: nvim/dein.vim/
-    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.zshrc: 
+      path: zsh/zshrc
+      force: true
+    ~/.oh-my-zsh: 
+      path: zsh/oh-my-zsh/
+      force: true
+    ~/.zsh_custom: 
+      path: zsh/zsh_custom/
+      force: true
+    ~/.config/nvim/dein.vim:
+      path: nvim/dein.vim/
+      force: true 
+    ~/.config/nvim/init.vim: 
+      path: nvim/init.vim
+      force: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

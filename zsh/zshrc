@@ -10,6 +10,20 @@ export ZSH=${HOME}/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="alien"
 
+if [[ $(hostname | grep 'grassmucks.com') ]]; then
+
+	export ALIEN_THEME="green"
+
+elif [[ $(hostname | grep -i 'mac-mini') ]]; then
+
+	export ALIEN_THEME="blue"
+
+else
+
+	export ALIEN_THEME="red"
+
+fi
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -87,3 +101,4 @@ fi
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
