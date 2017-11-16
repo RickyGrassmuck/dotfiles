@@ -10,11 +10,11 @@ export ZSH=${HOME}/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="alien"
 
-if [[ $(hostname | grep 'grassmucks.com') ]]; then
+if [ $(hostname | grep 'grassmucks.com') ]; then
 
 	export ALIEN_THEME="green"
 
-elif [[ $(hostname | grep -i 'mac-mini') ]]; then
+elif [ $(hostname | grep -i 'mac-mini') ]; then
 
 	export ALIEN_THEME="blue"
 
