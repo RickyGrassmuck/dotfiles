@@ -25,7 +25,10 @@
     ~/.iterm2_shell_integration.zsh:
       path: zsh/iterm2_shell_integration.zsh
       force: true
-
+    ~/.zsh_plugins:
+      path: zsh/plugins
+      force: true
+      
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - 
