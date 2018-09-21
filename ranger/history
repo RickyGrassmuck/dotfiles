@@ -1,0 +1,5 @@
+setlocal /bin preview_files False
+setlocal path=/bin preview_files False
+
+set colorscheme goodnight
+open_with 

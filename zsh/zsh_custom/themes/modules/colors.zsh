@@ -26,17 +26,17 @@ elif [[ "${ALIEN_THEME}" == "green" ]]; then
   color8=228    # prompt fg
   color9=154    # vcs fg
 elif [[ "${ALIEN_THEME}" == "blue" ]]; then
-  color0=018    # time bg
-  color1=226    # init bg
+  color0=003    # time bg
+  color1=000    # init bg
   color1r=196   # init bg error
-  color2=254    # time fg
-  color3=026    # user bg
-  color4=254    # user fg
-  color5=045    # dir bg
-  color6=019    # dir fg
+  color2=000    # time fg
+  color3=238    # user bg
+  color4=003    # user fg
+  color5=003    # dir bg
+  color6=000    # dir fg
   color7=238    # vcs bg
   color8=228    # prompt fg
-  color9=051    # vcs fg
+  color9=003    # vcs fg
 else
   color0=018    # time bg
   color1=226    # init bg

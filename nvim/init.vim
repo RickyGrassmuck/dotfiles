@@ -1,52 +1,40 @@
 set nocompatible
-set runtimepath+=~/.config/nvim/dein.vim " path to dein.vim
 let mapleader="\<SPACE>"
 
-call dein#begin(expand('~/.vim/dein')) " plugins' root path
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build': "make"})
-call dein#add('Shougo/unite.vim')
-call dein#add('klen/python-mode')
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-surround')
-call dein#add('maksimr/vim-jsbeautify')
-call dein#add('vim-perl/vim-perl')
+" auto-install vim-plug                                                                                             
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                           
+  autocmd VimEnter * PlugInstall                                                                                    
+endif          
 
-autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
-autocmd CompleteDone * pclose " To close preview window of deoplete automagically
+call plug#begin(expand('~/.config/nvim/plugged')) " plugins' root path
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vim-perl/vim-perl'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+call plug#end()
 
-call dein#end()
+if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  autocmd VimEnter * PlugInstall
+endif
 
 " Required:
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
-
-" Enable plugins
-
-nnoremap <leader>i :call dein#install()<Cr>
-
-" Pymode Options
-let g:pymode_options_colorcolumn = 0
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-h>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
 
-" Display all matching files when we tab complete
-set wildmenu
-set wildchar=<Tab> wildmenu wildmode=full
-set wildcharm=<C-Z>
-nnoremap <F10> :b <C-Z>
-
 " Display Line Numbers
-set number
+nnoremap <leader>n :set nonumber!<CR>
 
 "searching
 set ignorecase
@@ -58,7 +46,7 @@ set nohlsearch
 set hidden
 
 " No Mouse support
-set mouse=i
+set mouse=v
 
 " editorconfig fix for neovim
 let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
@@ -67,25 +55,6 @@ let g:EditorConfig_core_mode = 'external_command'
 " Python binaries
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
-
-" jsbeautify configurations
-
-" Set custom .editorconfig directory
-
-" for javascript
-autocmd FileType javascript noremap <buffer>  <leader>f :call JsBeautify()<cr>
-
-" for json
-autocmd FileType json noremap <buffer> <leader>f :call JsonBeautify()<cr>
-
-" for jsx
-autocmd FileType jsx noremap <buffer> <leader>f :call JsxBeautify()<cr>
-
-" for html
-autocmd FileType html noremap <buffer> <leader>f :call HtmlBeautify()<cr>
-
-" for css or scss
-autocmd FileType css noremap <buffer> <leader>f :call CSSBeautify()<cr>
 
 " for perl (grossness)
 autocmd Filetype perl call SetPerlOpts()
@@ -100,3 +69,15 @@ function SetPerlOpts()
 	setlocal errorformat=%f:%l:%m
 	setlocal autowrite
 endfunction
+
+autocmd Filetype python call SetPythonOpts()
+function SetPythonOpts()
+    set autoindent
+    set smartindent
+    set ts=2
+    set shiftwidth=2
+    set softtabstop=2
+    set expandtab
+endfunction
+
+autocmd filetype crontab setlocal nobackup nowritebackup
