@@ -13,6 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-perl/vim-perl'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'maksimr/vim-jsbeautify'
 call plug#end()
 
 if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -48,12 +49,8 @@ set hidden
 " No Mouse support
 set mouse=v
 
-" editorconfig fix for neovim
-let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
-let g:EditorConfig_core_mode = 'external_command'
-
 " Python binaries
-let g:python_host_prog = '/usr/local/bin/python'
+let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " for perl (grossness)
