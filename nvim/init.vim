@@ -67,6 +67,8 @@ autocmd Filetype markdown call SetMainOpts()
 autocmd Filetype python call SetMainOpts()
 autocmd Filetype zsh call SetMainOpts()
 autocmd Filetype bash call SetMainOpts()
+autocmd Filetype yaml call SetMainOpts()
+autocmd Filetype hcl call SetMainOpts()
 
 function SetMainOpts()
     set autoindent
