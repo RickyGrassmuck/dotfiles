@@ -1,2 +1,3 @@
 rigrassm/blox-zsh-theme
-
+felixgravila/zsh-abbr-path
+caarlos0/git-add-remote

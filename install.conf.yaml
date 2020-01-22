@@ -16,9 +16,6 @@
     ~/.zsh_custom: 
       path: zsh/zsh_custom/
       force: true
-    ~/.config/nvim/dein.vim:
-      path: nvim/dein.vim/
-      force: true 
     ~/.config/nvim/init.vim: 
       path: nvim/init.vim
       force: true

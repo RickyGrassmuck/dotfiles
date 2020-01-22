@@ -8,12 +8,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif          
 
 call plug#begin(expand('~/.config/nvim/plugged')) " plugins' root path
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-perl/vim-perl'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'maksimr/vim-jsbeautify'
+Plug 'beautify-web/js-beautify'
 call plug#end()
 
 if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -24,11 +24,7 @@ endif
 filetype plugin indent on
 syntax enable
 
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<c-h>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
+let g:airline#extensions#tabline#enabled = 1
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
