@@ -4,3 +4,5 @@ zsh/zsh_custom/plugins/
 zsh/zsh_custom/stolen_shit_from_adam.zsh
 zsh/zsh_custom/themes/
 zsh/zsh_custom/zfunc/
+zsh/oh-my-zsh
+Brewfile.lock.json
