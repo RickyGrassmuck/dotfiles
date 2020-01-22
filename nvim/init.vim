@@ -63,8 +63,12 @@ function SetPerlOpts()
 	setlocal autowrite
 endfunction
 
-autocmd Filetype python call SetPythonOpts()
-function SetPythonOpts()
+autocmd Filetype markdown call SetMainOpts()
+autocmd Filetype python call SetMainOpts()
+autocmd Filetype zsh call SetMainOpts()
+autocmd Filetype bash call SetMainOpts()
+
+function SetMainOpts()
     set autoindent
     set smartindent
     set ts=2
