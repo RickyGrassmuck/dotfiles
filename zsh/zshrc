@@ -11,7 +11,7 @@ source <(antibody init) && antibody bundle < ~/.zsh_custom/zsh_plugins.txt
 # Uncomment the following line to use case-sensitive completion.
 plugins=(python osx)
 CASE_SENSITIVE="true"
-DISABLE_UPDATE_PROMPT=true
+DISABLE_UPDATE_PROMPT="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -25,6 +25,7 @@ fi
 test_source "~/.iterm2_shell_integration.zsh"
 test_source " ~/.fzf.zsh"
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/rickygrassmuck/Development/bin/nomad nomad
+autoload -U compinit
+AUTOSUGGESTION_HIGHLIGHT_COLOR="fg=cyan"
+#autoload -U +X bashcompinit && bashcompinit
 
