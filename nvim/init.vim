@@ -39,6 +39,10 @@ set smartcase
 set incsearch
 set nohlsearch
 
+"LineNumbers
+set number
+set relativenumber
+
 " Buffers
 set hidden
 
@@ -64,6 +68,7 @@ function SetPerlOpts()
 endfunction
 
 autocmd Filetype markdown call SetMainOpts()
+autocmd Filetype javascript call SetMainOpts()
 autocmd Filetype python call SetMainOpts()
 autocmd Filetype zsh call SetMainOpts()
 autocmd Filetype bash call SetMainOpts()

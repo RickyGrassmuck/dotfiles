@@ -1,35 +1,105 @@
-# Created by newuser for 5.3.1
-# If you come from bash you might have to change your $PATH.
-export ZSH_CUSTOM=~/.zsh_custom
-export ZSH=${HOME}/.oh-my-zsh
-source ${ZSH}/oh-my-zsh.sh
+###[ ZSH ]
+source ~/.zsh_custom/gbt.zsh
+source ~/.zsh_custom/exports.zsh
+source ~/.zsh_custom/aliases.zsh
+source ~/.zsh_custom/vpn.zsh
+source ~/.zsh_custom/functions.zsh
 
-fpath+=${ZSH_CUSTOM}/zfunc
-source ${ZSH_CUSTOM}/*.zsh
-source <(antibody init) && antibody bundle < ~/.zsh_custom/zsh_plugins.txt
+source $GBT__HOME/sources/gbts/cmd/local.sh
 
-# Uncomment the following line to use case-sensitive completion.
-plugins=(python osx)
-CASE_SENSITIVE="true"
-DISABLE_UPDATE_PROMPT="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+fpath+=~/.zsh_custom/zfunc
 
-# Preferred editor for local and remote sessions
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+
+# Prompt
+autoload -U promptinit
+promptinit
+setopt PROMPT_SUBST
+
+# Other options
+setopt rmstarsilent
+setopt interactivecomments
+
+# Keybinding
+bindkey -e
+bindkey '^i' expand-or-complete-prefix
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line
+bindkey "${terminfo[kcbt]}" reverse-menu-complete
+bindkey "${terminfo[kdch1]}" delete-char
+autoload -U select-word-style
+select-word-style bash
+
+# Auto-completion
+autoload -U compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+
+
+###[ Other ]
+# Default editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
   export EDITOR='nvim'
 fi
 
-function test_source {
-    [ -f ${1} ] && source ${1}
-}
+# Aliases
 
-test_source "~/.iterm2_shell_integration.zsh"
-test_source " ~/.fzf.zsh"
+# Midnight Commander chdir enhancement
+if [ -f /usr/lib/mc/mc.sh ]; then
+    source /usr/lib/mc/mc.sh
+fi
 
-autoload -U compinit
-AUTOSUGGESTION_HIGHLIGHT_COLOR="fg=cyan"
-#autoload -U +X bashcompinit && bashcompinit
+# Syntax highlighting
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+    ZSH_HIGHLIGHT_STYLES[globbing]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[comment]='fg=white,bold'
+fi
+
+# History substring serach
+if [ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+fi
+
+# GBT prompt forwarding
+export GBT__HOME='/usr/local/share/gbt'
+
+if [ -f $GBT__HOME/sources/gbts/cmd/local.sh ]; then
+    source $GBT__HOME/sources/gbts/cmd/local.sh
+fi
+
+# Basic prompt for non-graphical terminals
+if [[ "$TERM" != xterm* ]] && [ -f $GBT__HOME/themes/basic.sh ]; then
+    source $GBT__HOME/themes/basic.sh
+fi
+
+source ~/.iterm2_shell_integration.zsh
+source  ~/.fzf.zsh
+
+# GBT prompt
+PROMPT='$(gbt $?)'
+
+ssh-add -qA
